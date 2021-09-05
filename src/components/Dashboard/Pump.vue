@@ -2,7 +2,7 @@
   <section>
 
 
-  
+
 
 
 
@@ -29,7 +29,7 @@
       Pump 2 reading is Normal
     </div>
      <div class="pump" v-else>
-      
+
       <img class='un-image'  src='../../assets/404.gif' alt='a 404 GIF'/>
       Unable to load readings
     </div>
@@ -46,7 +46,7 @@
       <img class='un-image' src='../../assets/404.gif' alt='a 404 GIF'/>
       Unable to load readings
     </div>
-    
+
 
   </section>
 
@@ -75,32 +75,32 @@ export default {
      pump3Val(){
       return this.pump3
     },
-  
- 
+
+
   },
   async mounted() {
-  const proxyUrl = 'https://cors-anywhere.herokuapp.com/' 
-  const apiUrl1 = 'http://altcarbon.herokuapp.com/api/pump1/';
-  const apiUrl2 = 'http://altcarbon.herokuapp.com/api/pump2/';
-  const apiUrl3 = 'http://altcarbon.herokuapp.com/api/pump3/';
- 
+  // const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+  const apiUrl1 = 'https://altcarbon.herokuapp.com/api/pump1/';
+  const apiUrl2 = 'https://altcarbon.herokuapp.com/api/pump2/';
+  const apiUrl3 = 'https://altcarbon.herokuapp.com/api/pump3/';
+
   await axios.all([
-  axios.get(proxyUrl + apiUrl1),
-  axios.get(proxyUrl + apiUrl2),
-  axios.get(proxyUrl + apiUrl3),
+  axios.get(apiUrl1, {mode: 'no-cors'}),
+  axios.get(apiUrl2, {mode: 'no-cors'}),
+  axios.get(apiUrl3, {mode: 'no-cors'}),
 ])
 .then(responseArr => {
-  
+
   this.pump1 =  responseArr[0].data.category;
   this.pump2 =  responseArr[1].data.category;
   this.pump3 =  responseArr[2].data.category;
-})  
-  .catch((error)  => { 
+})
+  .catch((error)  => {
   console.log(error.message)
   })
-    
-      
-  
+
+
+
 
 
   }
@@ -118,11 +118,11 @@ section{
 .pump{
     height:200px;
     border-radius: 20px;
-     box-shadow: 0 1px 2px rgba(0,0,0,0.07), 
-                0 2px 4px rgba(0,0,0,0.07), 
-                0 4px 8px rgba(0,0,0,0.07), 
+     box-shadow: 0 1px 2px rgba(0,0,0,0.07),
+                0 2px 4px rgba(0,0,0,0.07),
+                0 4px 8px rgba(0,0,0,0.07),
                 0 8px 16px rgba(0,0,0,0.07),
-                0 16px 32px rgba(0,0,0,0.07), 
+                0 16px 32px rgba(0,0,0,0.07),
                 0 32px 64px rgba(0,0,0,0.07);
     padding:20px ;
     text-align:center;
